@@ -1,0 +1,931 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="github,hexo," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="写博客的初衷已经在博客初识中说过一遍，在此便不再赘述。　　这篇博客记录的是我自己从无到有搭建属于自己的个人网站的过程，提供给各位做一些参考">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用github + hexo 搭建个人博客">
+<meta property="og:url" content="http://crystal564.github.io/2017/03/09/2017-03-09_use-github-hexo-person-blog/index.html">
+<meta property="og:site_name" content="crystal564的博客">
+<meta property="og:description" content="写博客的初衷已经在博客初识中说过一遍，在此便不再赘述。　　这篇博客记录的是我自己从无到有搭建属于自己的个人网站的过程，提供给各位做一些参考">
+<meta property="og:image" content="http://crystal564.github.io/images/Github-CrteatRepo-1.jpg">
+<meta property="og:image" content="http://crystal564.github.io/images/Github-CrteatRepo-2.jpg">
+<meta property="og:image" content="http://crystal564.github.io/images/Github-CrteatRepo-3.jpg">
+<meta property="og:image" content="http://crystal564.github.io/images/Github-CrteatRepo-4.jpg">
+<meta property="og:image" content="http://crystal564.github.io/images/Github-CrteatRepo-5.jpg">
+<meta property="og:image" content="http://crystal564.github.io/images/Github-CrteatRepo-6.jpg">
+<meta property="og:image" content="http://crystal564.github.io/images/Github-CrteatRepo-7.jpg">
+<meta property="og:image" content="http://crystal564.github.io/images/install-git-1.jpg">
+<meta property="og:image" content="http://crystal564.github.io/images/install-node.js-1.jpg">
+<meta property="og:image" content="http://crystal564.github.io/images/check-git-node-1.jpg">
+<meta property="og:image" content="http://crystal564.github.io/images/install-hexo-1.jpg">
+<meta property="og:image" content="http://crystal564.github.io/images/install-hexo-2.jpg">
+<meta property="og:image" content="http://crystal564.github.io/images/install-hexo-3.jpg">
+<meta property="og:image" content="http://crystal564.github.io/images/install-hexo-4.jpg">
+<meta property="og:image" content="http://crystal564.github.io/images/manage-blog-1.jpg">
+<meta property="og:image" content="http://crystal564.github.io/images/create-new-blog-1.jpg">
+<meta property="og:image" content="http://crystal564.github.io/images/create-new-blog-3.jpg">
+<meta property="og:image" content="http://crystal564.github.io/images/public-blog-1.jpg">
+<meta property="og:image" content="http://crystal564.github.io/images/public-blog-2.jpg">
+<meta property="og:image" content="http://crystal564.github.io/images/aliyun-domain-1.jpg">
+<meta property="og:image" content="http://crystal564.github.io/images/aliyun-domain-2.jpg">
+<meta property="og:image" content="http://crystal564.github.io/images/aliyun-domain-3.jpg">
+<meta property="og:image" content="http://crystal564.github.io/images/aliyun-domain-4.jpg">
+<meta property="og:image" content="http://crystal564.github.io/images/aliyun-domain-5.jpg">
+<meta property="og:updated_time" content="2017-03-14T03:34:57.138Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="利用github + hexo 搭建个人博客">
+<meta name="twitter:description" content="写博客的初衷已经在博客初识中说过一遍，在此便不再赘述。　　这篇博客记录的是我自己从无到有搭建属于自己的个人网站的过程，提供给各位做一些参考">
+<meta name="twitter:image" content="http://crystal564.github.io/images/Github-CrteatRepo-1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://crystal564.github.io/2017/03/09/2017-03-09_use-github-hexo-person-blog/"/>
+
+
+
+
+
+  <title> 利用github + hexo 搭建个人博客 | crystal564的博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">crystal564的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">每天进步一点点</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://crystal564.github.io/2017/03/09/2017-03-09_use-github-hexo-person-blog/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="crystal564">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="crystal564的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                利用github + hexo 搭建个人博客
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-09T17:38:10+08:00">
+                2017-03-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/09/2017-03-09_use-github-hexo-person-blog/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/09/2017-03-09_use-github-hexo-person-blog/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/03/09/2017-03-09_use-github-hexo-person-blog/" class="leancloud_visitors" data-flag-title="利用github + hexo 搭建个人博客">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>　　写博客的初衷已经在博客<a href="http://www.crystal564.cn/2017/03/09/the-first-meeting-to-blog/" target="_blank" rel="external">初识</a>中说过一遍，在此便不再赘述。<br>　　这篇博客记录的是我自己从无到有搭建属于自己的个人网站的过程，提供给各位做一些参考<br><a id="more"></a></p>
+<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p>环境:window 7 x64<br>git<br>node.js<br>markdownPad</p>
+<h3 id="步骤："><a href="#步骤：" class="headerlink" title="步骤："></a>步骤：</h3><ul>
+<li>注册github账号，创建博客版本库</li>
+<li>安装git和node.js</li>
+<li>安装hexo</li>
+<li>发布博客</li>
+<li>注册并绑定域名</li>
+</ul>
+<h2 id="注册github创建博客版本库"><a href="#注册github创建博客版本库" class="headerlink" title="注册github创建博客版本库"></a>注册github创建博客版本库</h2><p>注册github的过程不过多叙述。登陆github</p>
+<ol>
+<li>创建一个版本仓库 点击 ”New repository”</li>
+</ol>
+<p><img src="/images/Github-CrteatRepo-1.jpg" alt=""></p>
+<ol>
+<li>版本库名称为 username.github.io username是github的账号名，是github官方为每一个用户预留的域名地址，可以直接通过username.github.io 访问自己的博客。</li>
+</ol>
+<p><img src="/images/Github-CrteatRepo-2.jpg" alt=""></p>
+<ol>
+<li>默认设置，创建版本库</li>
+</ol>
+<p><img src="/images/Github-CrteatRepo-3.jpg" alt=""></p>
+<p><em>注：后续步骤可选</em></p>
+<p>*4. 进入username.github.io版本库 选择setting</p>
+<p><img src="/images/Github-CrteatRepo-4.jpg" alt=""></p>
+<p>*5. 找到Github pages 模块 这里选择 change theme</p>
+<p><img src="/images/Github-CrteatRepo-5.jpg" alt=""></p>
+<p>选择一个theme 然后submit</p>
+<p><img src="/images/Github-CrteatRepo-6.jpg" alt=""></p>
+<p>*6. 在浏览器中打开 username.github.io 即可看到自己的博客</p>
+<p><img src="/images/Github-CrteatRepo-7.jpg" alt=""></p>
+<h2 id="安装git和node-js"><a href="#安装git和node-js" class="headerlink" title="安装git和node.js"></a>安装git和node.js</h2><p>首先下载git <a href="https://git-scm.com/" target="_blank" rel="external">官网下载地址</a><br>node.js <a href="https://nodejs.org/en/" target="_blank" rel="external">官网下载地址</a> </p>
+<h3 id="安装git"><a href="#安装git" class="headerlink" title="安装git"></a>安装git</h3><p><img src="/images/install-git-1.jpg" alt=""></p>
+<p>之后修改一下存放路径，然后一路next  默认设置即可</p>
+<p>安装node.js<br>修改一下安装路径，之后一直next即可<br><img src="/images/install-node.js-1.jpg" alt=""></p>
+<p>检查是否安装成功 运行-cmd 中输入下面两行命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ npm -v</div><div class="line">$ git --version</div></pre></td></tr></table></figure>
+<p><img src="/images/check-git-node-1.jpg" alt=""></p>
+<p>出现版本号表示安装正常</p>
+<h3 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h3><ul>
+<li><a href="http://gitref.org/zh/creating/" target="_blank" rel="external">git官方中文参考手册</a></li>
+<li><a href="http://nodejs.cn/api/" target="_blank" rel="external">node.js中文参考手册</a></li>
+</ul>
+<h2 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h2><p>hexo是基于node.js的静态博客，官网也是搭建在GitHub上<br>在电脑上新建一个blog文件夹,该文件夹用于存放你的博客文件,然后右键单击选择“Git Bash”<br><img src="/images/install-hexo-1.jpg" alt=""><br>大家估计都有被“墙”的经历，安装hexo为了避免出现类似情况，我使用淘宝NPM镜像,输入以下命令等待安装完成</p>
+<p>先通过npm命令 安装 cnpm (淘宝nmp命令)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install -g cnpm --registry=https://registry.npm.taobao.org</div></pre></td></tr></table></figure>
+<p>然后安装 hexo (之后通过cnpm命令走的是国内淘宝镜像)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ cnpm install -g hexo-cli</div></pre></td></tr></table></figure>
+<p>继续安装hexo </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ cnpm install hexo --save</div></pre></td></tr></table></figure>
+<p>安装完成后，在输入命令，验证是否安装正确</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo -v</div></pre></td></tr></table></figure>
+<p>出现版本号则说明安装正确</p>
+<p><img src="/images/install-hexo-2.jpg" alt=""></p>
+<h3 id="本地运行hexo"><a href="#本地运行hexo" class="headerlink" title="本地运行hexo"></a>本地运行hexo</h3><p>hexo 初始化命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo init</div></pre></td></tr></table></figure>
+<p><img src="/images/install-hexo-3.jpg" alt=""></p>
+<p>出现该行说明hexo init成功</p>
+<p>安装生成器</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ cnpm install</div></pre></td></tr></table></figure>
+<p>到此hexo安装成功</p>
+<p>运行hexo,以后要在本地运行博客只要输入该命令即可</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo s -g</div></pre></td></tr></table></figure>
+<p>然后在浏览器输入<a href="http://localhost:4000" target="_blank" rel="external">http://localhost:4000</a> 就可以查看自己的Blog了</p>
+<p><img src="/images/install-hexo-4.jpg" alt=""></p>
+<h3 id="参考手册"><a href="#参考手册" class="headerlink" title="参考手册"></a>参考手册</h3><ul>
+<li><a href="https://hexo.io/zh-cn/docs/commands.html" target="_blank" rel="external">hexo官方中文指令手册</a></li>
+</ul>
+<p>在git Bash命令行ctrl+c可停止调试博客</p>
+<p>至此，简单的本地博客环境搭建完毕。</p>
+<h2 id="管理博客"><a href="#管理博客" class="headerlink" title="管理博客"></a>管理博客</h2><p>打开blog文件夹 用sublime修改_config.yml文件<br><img src="/images/manage-blog-1.jpg" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div></pre></td><td class="code"><pre><div class="line"># Hexo Configuration</div><div class="line">## Docs: https://hexo.io/docs/configuration.html</div><div class="line">## Source: https://github.com/hexojs/hexo/</div><div class="line"></div><div class="line"># 每一个&quot;:&quot;后面都需要先加上一个空格</div><div class="line"># Site</div><div class="line"># 标题</div><div class="line">title: crystal564的博客</div><div class="line"># 副标题</div><div class="line">subtitle: 每天进步一点点</div><div class="line"># 简介</div><div class="line">description: 记录生活点滴</div><div class="line"># 作者</div><div class="line">author: crystal564</div><div class="line"># 语言</div><div class="line">language: zh-CN</div><div class="line"># 时区</div><div class="line">timezone:</div><div class="line"></div><div class="line"># URL</div><div class="line">## If your site is put in a subdirectory, set url as &apos;http://yoursite.com/child&apos; and root as &apos;/child/&apos;</div><div class="line"># 博客地址,与申请的GitHub一致</div><div class="line">url: http://crystal564.github.io</div><div class="line"></div><div class="line">root: /</div><div class="line"># 博客链接格式</div><div class="line">permalink: :year/:month/:day/:title/</div><div class="line">permalink_defaults:</div><div class="line"></div><div class="line"># Directory</div><div class="line">source_dir: source</div><div class="line">public_dir: public</div><div class="line">tag_dir: tags</div><div class="line">archive_dir: archives</div><div class="line">category_dir: categories</div><div class="line">code_dir: downloads/code</div><div class="line">i18n_dir: :lang</div><div class="line">skip_render:</div><div class="line"></div><div class="line"># Writing</div><div class="line">new_post_name: :title.md # File name of new posts</div><div class="line">default_layout: post</div><div class="line">titlecase: false # Transform title into titlecase</div><div class="line">external_link: true # Open external links in new tab</div><div class="line">filename_case: 0</div><div class="line">render_drafts: false</div><div class="line">post_asset_folder: false</div><div class="line">relative_link: false</div><div class="line">future: true</div><div class="line">highlight:</div><div class="line">  enable: true</div><div class="line">  line_number: true</div><div class="line">  auto_detect: false</div><div class="line">  tab_replace:</div><div class="line"></div><div class="line"># Category &amp; Tag</div><div class="line"># 目录 标签</div><div class="line">default_category: uncategorized</div><div class="line">category_map:</div><div class="line">tag_map:</div><div class="line"></div><div class="line"># Date / Time format</div><div class="line">## Hexo uses Moment.js to parse and display date</div><div class="line">## You can customize the date format as defined in</div><div class="line">## http://momentjs.com/docs/#/displaying/format/</div><div class="line"># 日期格式</div><div class="line">date_format: YYYY-MM-DD</div><div class="line"># 时间格式</div><div class="line">time_format: HH:mm:ss</div><div class="line"></div><div class="line"># Pagination</div><div class="line">## Set per_page to 0 to disable pagination</div><div class="line"># 分页，每页文章数量</div><div class="line">per_page: 10</div><div class="line">pagination_dir: page</div><div class="line"></div><div class="line"># Extensions</div><div class="line">## Plugins: https://hexo.io/plugins/</div><div class="line">## Themes: https://hexo.io/themes/</div><div class="line"># 博客主题 下载的主题放在theme文件目录下，文件夹就是主题名</div><div class="line">theme: landscape</div><div class="line"></div><div class="line"># Deployment</div><div class="line">## Docs: https://hexo.io/docs/deployment.html</div><div class="line"># 发布设置</div><div class="line">deploy:</div><div class="line">  type: git</div><div class="line">  # crystal564 改为你的github用户名</div><div class="line">  repository:  git@github.com:crystal564/crystal564.github.io.git</div><div class="line">  branch: master</div></pre></td></tr></table></figure>
+<h3 id="第一篇博客"><a href="#第一篇博客" class="headerlink" title="第一篇博客"></a>第一篇博客</h3><p>下面让我们来创建属于我们的第一篇博客<br>输入创建文章命令，生成一个md文件(/blog/source/_posts/)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"初识"</span></div></pre></td></tr></table></figure>
+<p><img src="/images/create-new-blog-1.jpg" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">title: 初识</div><div class="line">date: 2017-03-09 15:46:37</div><div class="line">categories:</div><div class="line">  - 日志</div><div class="line">  - 二级目录</div><div class="line">tags:</div><div class="line">  - 初识</div><div class="line">摘要:</div><div class="line">&lt;!--more--&gt;</div><div class="line">正文:</div></pre></td></tr></table></figure>
+<p>然后我们预览一下自己的博客</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo s -g</div></pre></td></tr></table></figure>
+<p>浏览器访问 <a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a><br><img src="/images/create-new-blog-3.jpg" alt=""></p>
+<h2 id="发布博客"><a href="#发布博客" class="headerlink" title="发布博客"></a>发布博客</h2><p>现在本地以及可以看到博客了，下面我们将把该博客挂到github上</p>
+<p>查看git配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git config --list</div></pre></td></tr></table></figure>
+<p>结果如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">core.symlinks=false</div><div class="line">core.autocrlf=true</div><div class="line">core.fscache=true</div><div class="line">color.diff=auto</div><div class="line">color.status=auto</div><div class="line">color.branch=auto</div><div class="line">color.interactive=true</div><div class="line">help.format=html</div><div class="line">http.sslcainfo=E:/Program Files/Git/mingw64/ssl/certs/ca-bundle.crt</div><div class="line">diff.astextplain.textconv=astextplain</div><div class="line">rebase.autosquash=true</div><div class="line">filter.lfs.clean=git-lfs clean -- %f</div><div class="line">filter.lfs.smudge=git-lfs smudge -- %f</div><div class="line">filter.lfs.required=true</div><div class="line">filter.lfs.clean=git-lfs clean -- %f</div><div class="line">filter.lfs.smudge=git-lfs smudge -- %f</div><div class="line">filter.lfs.required=true</div><div class="line">user.name=[wagw775]</div><div class="line">user.email=[292873711@qq.com]</div></pre></td></tr></table></figure>
+<p>最后的user.name,user.email就是git的账号信息</p>
+<p>如果没有则需要通过下面命令来设置新的用户名和邮箱</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git config user.name [new_username]</div><div class="line">$ git config user.email [new_email]</div></pre></td></tr></table></figure>
+<p>安装hexo git插件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ cnpm install hexo-deployer-git --save</div></pre></td></tr></table></figure>
+<p>发布更新博客到_config.yml 中配置的repository路径<br><img src="/images/public-blog-1.jpg" alt=""></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo d -g</div></pre></td></tr></table></figure>
+<p>发布成功</p>
+<p><img src="/images/public-blog-2.jpg" alt=""></p>
+<p>访问{$username}.github.io<br>进入blog</p>
+<p>若这里出现异常可以参考<a href="#exceptSolution">异常处理</a></p>
+<h2 id="注册并绑定域名"><a href="#注册并绑定域名" class="headerlink" title="注册并绑定域名"></a>注册并绑定域名</h2><p>参考博客 <a href="http://quantumman.me/blog/setting-up-a-domain-with-gitHub-pages.html" target="_blank" rel="external">GitHub Pages 绑定来自阿里云的域名</a></p>
+<p>github可以给自己的博客绑定一个域名，我们购买一个域名即可</p>
+<p>购买域名在<a href="https://cn.aliyun.com/" target="_blank" rel="external">阿里云</a>上购买即可</p>
+<p>控制台-&gt;域名与网站-&gt;域名-&gt;域名注册<br><img src="/images/aliyun-domain-1.jpg" alt=""></p>
+<p><img src="/images/aliyun-domain-2.jpg" alt=""></p>
+<p><img src="/images/aliyun-domain-3.jpg" alt=""></p>
+<p>注册了之后需要实名验证才可以使用域名</p>
+<p>然后在 blog/source/目录下 添加一个文件CNAME<br>内容为你的域名<br>your domain</p>
+<p><img src="/images/aliyun-domain-4.jpg" alt=""></p>
+<p>然后重新发布 CNAME文件就会出现在github的根目录下</p>
+<p>绑定完成后，登录阿里云单域名控制台，在域名解析中添加如图所示的解析</p>
+<p><img src="/images/aliyun-domain-5.jpg" alt=""></p>
+<p>然后在浏览器输入该域名访问博客</p>
+<p>注意1.第一个A和第二个A ip地址不同<br>第一个A对应的ip是 192.30.252.154<br>第二个A对应的ip是 192.30.252.153<br>最上面的CNAME 对应的域名 username.github.io. ，最后的.不能忘记</p>
+<h2 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a><a name="exceptSolution">异常处理</a></h2><h3 id="发布成功，博客内本地图片无法访问异常"><a href="#发布成功，博客内本地图片无法访问异常" class="headerlink" title="发布成功，博客内本地图片无法访问异常"></a>发布成功，博客内本地图片无法访问异常</h3><p>hexo 中 image,js,这种资源文件全部放在blog/source/文件夹下，然后在本地使用markdownpad编辑md文件时，使用图片的路径为</p>
+<pre><code>![](../images/img.jpg)
+</code></pre><p>才能预览图片<br>但是如果要发布到网页上，需要将路径改动成根目录路径</p>
+<pre><code>![](/images/img.jpg)
+</code></pre>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/github/" rel="tag"># github</a>
+          
+            <a href="/tags/hexo/" rel="tag"># hexo</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/09/2017-03-09_the-first-meeting-to-blog/" rel="next" title="初识">
+                <i class="fa fa-chevron-left"></i> 初识
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/10/2017-03-10_hexo-except-https-to-git/" rel="prev" title="hexo https协议无法访问github解决方案">
+                hexo https协议无法访问github解决方案 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/03/09/2017-03-09_use-github-hexo-person-blog/"
+           data-title="利用github + hexo 搭建个人博客" data-url="http://crystal564.github.io/2017/03/09/2017-03-09_use-github-hexo-person-blog/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="crystal564" />
+          <p class="site-author-name" itemprop="name">crystal564</p>
+           
+              <p class="site-description motion-element" itemprop="description">记录生活点滴</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#准备"><span class="nav-number">1.</span> <span class="nav-text">准备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#步骤："><span class="nav-number">1.1.</span> <span class="nav-text">步骤：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注册github创建博客版本库"><span class="nav-number">2.</span> <span class="nav-text">注册github创建博客版本库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装git和node-js"><span class="nav-number">3.</span> <span class="nav-text">安装git和node.js</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装git"><span class="nav-number">3.1.</span> <span class="nav-text">安装git</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考文档"><span class="nav-number">3.2.</span> <span class="nav-text">参考文档</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装hexo"><span class="nav-number">4.</span> <span class="nav-text">安装hexo</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#本地运行hexo"><span class="nav-number">4.1.</span> <span class="nav-text">本地运行hexo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考手册"><span class="nav-number">4.2.</span> <span class="nav-text">参考手册</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#管理博客"><span class="nav-number">5.</span> <span class="nav-text">管理博客</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一篇博客"><span class="nav-number">5.1.</span> <span class="nav-text">第一篇博客</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发布博客"><span class="nav-number">6.</span> <span class="nav-text">发布博客</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注册并绑定域名"><span class="nav-number">7.</span> <span class="nav-text">注册并绑定域名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异常处理"><span class="nav-number">8.</span> <span class="nav-text">异常处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#发布成功，博客内本地图片无法访问异常"><span class="nav-number">8.1.</span> <span class="nav-text">发布成功，博客内本地图片无法访问异常</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">crystal564</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"crystal564"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("4kCEAwaczLto7YeJJkO6YSv8-gzGzoHsz", "lf4I3poOdeuRfChe3OjjeUqv");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+
+  
+
+</body>
+</html>
