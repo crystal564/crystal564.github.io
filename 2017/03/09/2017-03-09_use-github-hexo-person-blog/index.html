@@ -91,7 +91,7 @@
 <meta property="og:image" content="http://crystal564.github.io/images/aliyun-domain-3.jpg">
 <meta property="og:image" content="http://crystal564.github.io/images/aliyun-domain-4.jpg">
 <meta property="og:image" content="http://crystal564.github.io/images/aliyun-domain-5.jpg">
-<meta property="og:updated_time" content="2017-03-14T03:34:57.138Z">
+<meta property="og:updated_time" content="2017-03-21T09:59:22.596Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="利用github + hexo 搭建个人博客">
 <meta name="twitter:description" content="写博客的初衷已经在博客初识中说过一遍，在此便不再赘述。　　这篇博客记录的是我自己从无到有搭建属于自己的个人网站的过程，提供给各位做一些参考">
@@ -437,7 +437,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">core.symlinks=false</div><div class="line">core.autocrlf=true</div><div class="line">core.fscache=true</div><div class="line">color.diff=auto</div><div class="line">color.status=auto</div><div class="line">color.branch=auto</div><div class="line">color.interactive=true</div><div class="line">help.format=html</div><div class="line">http.sslcainfo=E:/Program Files/Git/mingw64/ssl/certs/ca-bundle.crt</div><div class="line">diff.astextplain.textconv=astextplain</div><div class="line">rebase.autosquash=true</div><div class="line">filter.lfs.clean=git-lfs clean -- %f</div><div class="line">filter.lfs.smudge=git-lfs smudge -- %f</div><div class="line">filter.lfs.required=true</div><div class="line">filter.lfs.clean=git-lfs clean -- %f</div><div class="line">filter.lfs.smudge=git-lfs smudge -- %f</div><div class="line">filter.lfs.required=true</div><div class="line">user.name=[wagw775]</div><div class="line">user.email=[292873711@qq.com]</div></pre></td></tr></table></figure>
 <p>最后的user.name,user.email就是git的账号信息</p>
 <p>如果没有则需要通过下面命令来设置新的用户名和邮箱</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git config user.name [new_username]</div><div class="line">$ git config user.email [new_email]</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git config --global user.name new_username</div><div class="line">$ git config --global user.email new_email</div></pre></td></tr></table></figure>
 <p>安装hexo git插件</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ cnpm install hexo-deployer-git --save</div></pre></td></tr></table></figure>
 <p>发布更新博客到_config.yml 中配置的repository路径<br><img src="/images/public-blog-1.jpg" alt=""></p>
