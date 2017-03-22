@@ -1,0 +1,897 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="hadoop,大数据," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="在centOS 7 安装hadoop单机环境教程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="centOS 7 安装hadoop单机">
+<meta property="og:url" content="http://crystal564.github.io/2017/03/20/2017-03-20-install-hadoop-on-centos/index.html">
+<meta property="og:site_name" content="crystal564的博客">
+<meta property="og:description" content="在centOS 7 安装hadoop单机环境教程">
+<meta property="og:image" content="http://crystal564.github.io/images/2017-03-20-centos-7-ip-addr.jpg">
+<meta property="og:image" content="http://crystal564.github.io/images/2017-03-20-centos-7-vi-ifcfg.jpg">
+<meta property="og:image" content="http://crystal564.github.io/images/2017-03-20-centos-7-vi-ifcfg-2.jpg">
+<meta property="og:image" content="http://crystal564.github.io/images/2017-03-20-centos-7-hostnamectl-status.jpg">
+<meta property="og:image" content="http://crystal564.github.io/images/2017-03-21-ssh-keygen.jpg">
+<meta property="og:image" content="http://crystal564.github.io/images/2017-03-21-secureCRT.jpg">
+<meta property="og:image" content="http://crystal564.github.io/images/2017-03-21-secureCRT-chinese.jpg">
+<meta property="og:image" content="http://crystal564.github.io/images/2017-03-21-jdk-version.jpg">
+<meta property="og:image" content="http://crystal564.github.io/images/2017-03-22-hadoop_home.jpg">
+<meta property="og:image" content="http://crystal564.github.io/images/2017-03-21-secureCRT-chinese.jpg">
+<meta property="og:image" content="http://crystal564.github.io/images/2017-03-21-secureCRT-chinese-setting.jpg">
+<meta property="og:image" content="http://crystal564.github.io/images/2017-03-21-secureCRT-chinese-setting-2.jpg">
+<meta property="og:updated_time" content="2017-03-22T01:40:49.511Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="centOS 7 安装hadoop单机">
+<meta name="twitter:description" content="在centOS 7 安装hadoop单机环境教程">
+<meta name="twitter:image" content="http://crystal564.github.io/images/2017-03-20-centos-7-ip-addr.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://crystal564.github.io/2017/03/20/2017-03-20-install-hadoop-on-centos/"/>
+
+
+
+
+
+  <title> centOS 7 安装hadoop单机 | crystal564的博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">crystal564的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">每天进步一点点</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://crystal564.github.io/2017/03/20/2017-03-20-install-hadoop-on-centos/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="crystal564">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="crystal564的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                centOS 7 安装hadoop单机
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-20T17:00:15+08:00">
+                2017-03-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/20/2017-03-20-install-hadoop-on-centos/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/20/2017-03-20-install-hadoop-on-centos/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/03/20/2017-03-20-install-hadoop-on-centos/" class="leancloud_visitors" data-flag-title="centOS 7 安装hadoop单机">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在centOS 7 安装hadoop单机环境教程</p>
+<a id="more"></a>
+<p>首先，在虚拟机VMware上安装cent os 7，centos7和之前的版本安装步骤相同，命令不同，因为centos7的一些命令不同了。</p>
+<p>安装虚拟机的过程不多说，博主的环境是centos7最小化安装，进去之后就是命令行，因为之后打算用secureCRT做链接，所以没有安装图形化界面。</p>
+<p>首先，我们需要在root用户下安装hadoop，最好在root用户下安装，博主曾经尝试过普通用户安装，结果用户权限搞得乱七八糟，全部重装了，所以还是root下比较好。</p>
+<h2 id="修改ip地址"><a href="#修改ip地址" class="headerlink" title="修改ip地址"></a>修改ip地址</h2><h3 id="获取当前使用的ip地址和网卡"><a href="#获取当前使用的ip地址和网卡" class="headerlink" title="获取当前使用的ip地址和网卡"></a>获取当前使用的ip地址和网卡</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 查看ip地址和网卡状态</span></div><div class="line">$ ip addr</div></pre></td></tr></table></figure>
+<p><img src="/images/2017-03-20-centos-7-ip-addr.jpg" alt=""></p>
+<p>上图红色部分，lo是回环网路，负责127.0.0.1的回环，禁用后不能localhost和127.0.0.1访问本地，</p>
+<p>下面的eno16777736就是当前网卡 ip是192.168.1.201</p>
+<h3 id="修改ip地址为静态"><a href="#修改ip地址为静态" class="headerlink" title="修改ip地址为静态"></a>修改ip地址为静态</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 修改网卡文件</span></div><div class="line">$ vi /etc/sysconfig/network-scripts/ifcfg-eno16777736</div></pre></td></tr></table></figure>
+<p><img src="/images/2017-03-20-centos-7-vi-ifcfg.jpg" alt=""></p>
+<p>网卡文件的名称为 ifcfg-网卡名</p>
+<p><img src="/images/2017-03-20-centos-7-vi-ifcfg-2.jpg" alt=""></p>
+<p>修改ipaddr，gateway，dns1，dns2，bootproto，这5个参数，<br>设置网络为statis模式 onboot是开机自动启动参数，设置为yes</p>
+<h3 id="重启网卡设备"><a href="#重启网卡设备" class="headerlink" title="重启网卡设备"></a>重启网卡设备</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 重启network服务</span></div><div class="line">$ systemctl restart network</div><div class="line"><span class="comment"># 再次检查ip和网卡状态</span></div><div class="line">$ ip addr</div></pre></td></tr></table></figure>
+<h2 id="修改主机名"><a href="#修改主机名" class="headerlink" title="修改主机名"></a>修改主机名</h2><p>修改主机名比较详细的解释，可以参考<a href="http://www.centoscn.com/CentOS/config/2014/1031/4039.html" target="_blank" rel="external">这篇文章</a></p>
+<p>在这里，我们修改的是static主机名即可，<br>修改centos7的hostname，和对应的hosts文件</p>
+<h3 id="查看hostname"><a href="#查看hostname" class="headerlink" title="查看hostname"></a>查看hostname</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 查看当前hostname</span></div><div class="line">$ hostnamectl status</div></pre></td></tr></table></figure>
+<p>如下图:<br><img src="/images/2017-03-20-centos-7-hostnamectl-status.jpg" alt=""></p>
+<h3 id="设置hostname"><a href="#设置hostname" class="headerlink" title="设置hostname"></a>设置hostname</h3><p>方法1:<br>直接修改/etc/hostname文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 编辑static hostname文件</span></div><div class="line">$ vi /etc/hostname</div></pre></td></tr></table></figure>
+<p>然后在文件中写入自己的主机名，我这里设置的是hadoop</p>
+<p>方法2:命令行修改<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 通过命令行修改static主机名</span></div><div class="line">$ hostnamectl --static <span class="built_in">set</span>-hostname hadoop</div></pre></td></tr></table></figure></p>
+<p>最后的hadoop替换成要修改的主机名</p>
+<p>重启之后生效</p>
+<h3 id="DNS映射"><a href="#DNS映射" class="headerlink" title="DNS映射"></a>DNS映射</h3><p>映射主机名和ip</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ vi /etc/hosts</div></pre></td></tr></table></figure>
+<p>在文件最后加上下面的代码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># ip	主机名</span></div><div class="line">192.168.1.201   hadoop</div></pre></td></tr></table></figure>
+<h2 id="关闭防火墙"><a href="#关闭防火墙" class="headerlink" title="关闭防火墙"></a>关闭防火墙</h2><p>centOS7 的防火墙不在是以前的iptables，而是firewall,然后ssh链接需要关闭防火墙，不然链接不上。<br>使用下面命令关闭防火墙</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 查看防火墙状态</span></div><div class="line">$ systemctl status firewalld.service </div><div class="line"><span class="comment"># 停止防火墙</span></div><div class="line">$ systemctl stop firewalld.service</div><div class="line"><span class="comment"># 禁止防火墙开机启动</span></div><div class="line">$ systemctl <span class="built_in">disable</span> firewalld.service </div><div class="line"><span class="comment"># 查看防火墙状态</span></div><div class="line">$ firewall-cmd --state</div></pre></td></tr></table></figure>
+<h2 id="设置ssh免密码登录"><a href="#设置ssh免密码登录" class="headerlink" title="设置ssh免密码登录"></a>设置ssh免密码登录</h2><p>安装启动ssh服务，然后就可以通过secureCRT远程链接登录了。<br>设置ssh免密码登录是安装hadoop集群需要的，单机版可以不设置，不过在这里还是设置一遍</p>
+<h3 id="检查ssh状态"><a href="#检查ssh状态" class="headerlink" title="检查ssh状态"></a>检查ssh状态</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 检查是否安装ssh服务</span></div><div class="line">$ rpm -qa | grep ssh</div><div class="line"><span class="comment"># 如果没有安装 则通过yum安装</span></div><div class="line">$ yum install openssh-server</div><div class="line"></div><div class="line"><span class="comment"># 检查ssh是否已经启动</span></div><div class="line">$ systemctl status sshd.service</div><div class="line"><span class="comment"># 重启ssh服务</span></div><div class="line"><span class="comment"># systemctl restart sshd.service</span></div></pre></td></tr></table></figure>
+<h3 id="设置ssh免密码登录-1"><a href="#设置ssh免密码登录-1" class="headerlink" title="设置ssh免密码登录"></a>设置ssh免密码登录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 设置ssh免密码</span></div><div class="line">$ ssh-keygen -t rsa</div></pre></td></tr></table></figure>
+<p>连续3次回车</p>
+<p>如下图</p>
+<p><img src="/images/2017-03-21-ssh-keygen.jpg" alt=""></p>
+<p>然后进入ssh目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 在当前用户根目录的下面</span></div><div class="line">$ <span class="built_in">cd</span> ~/.ssh</div><div class="line"><span class="comment"># 将秘钥保存在authorized_keys文件中</span></div><div class="line">$ cat id_rsa.pub &gt; authorized_keys</div></pre></td></tr></table></figure>
+<h3 id="测试访问"><a href="#测试访问" class="headerlink" title="测试访问"></a>测试访问</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 测试访问</span></div><div class="line">$ ssh localhost</div></pre></td></tr></table></figure>
+<p>如果不需要输入密码，就表示ssh免密码配置成功</p>
+<h3 id="通过secureCRT访问"><a href="#通过secureCRT访问" class="headerlink" title="通过secureCRT访问"></a>通过secureCRT访问</h3><p>这个时候，通过secureCRT访问服务器<br>如下图，再输入一次密码之后，成功连接服务器<br><img src="/images/2017-03-21-secureCRT.jpg" alt=""></p>
+<p>然后我们就可以在window下对服务器进行配置了。</p>
+<p>secureCRT初次链接会出现中文乱码异常<br><img src="/images/2017-03-21-secureCRT-chinese.jpg" alt=""><br>解决方法点击<a href="#exception-1">secureCRT 中文乱码异常</a></p>
+<h2 id="安装jdk"><a href="#安装jdk" class="headerlink" title="安装jdk"></a>安装jdk</h2><p>hadoop应需要依赖jdk，所以我们首先安装jdk程序</p>
+<p>点击<a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" target="_blank" rel="external">这里</a>下载最新版jdk</p>
+<p>下载完成后，通过filezille程序上传到服务器、/usr目录下<br>或者安装rz/sz命令</p>
+<h3 id="安装rz-sz命令"><a href="#安装rz-sz命令" class="headerlink" title="安装rz/sz命令"></a>安装rz/sz命令</h3><p>安装lrzsz命令的方法，通过yum安装即可<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># yum安装rz/sz命令</span></div><div class="line">$ yum install lrzsz</div></pre></td></tr></table></figure></p>
+<p>然后就可以通过rz命令上传文件了</p>
+<h3 id="上传jdk"><a href="#上传jdk" class="headerlink" title="上传jdk"></a>上传jdk</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 创建/usr/java目录</span></div><div class="line">$ mkdir /usr/java</div><div class="line"><span class="comment"># 移动jdk到/usr/java文件夹内</span></div><div class="line">$ mv jdk-8u91-linux-x64.rpm /usr/java/</div><div class="line"><span class="comment"># 进入/usr/java文件夹</span></div><div class="line">$ <span class="built_in">cd</span> /usr/java</div></pre></td></tr></table></figure>
+<h3 id="检查jdk是否已经安装"><a href="#检查jdk是否已经安装" class="headerlink" title="检查jdk是否已经安装"></a>检查jdk是否已经安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 检查jdk是否已经安装</span></div><div class="line">$ java -v</div><div class="line">$ rpm -qa | grep jdk</div></pre></td></tr></table></figure>
+<p>没有结果表示没有安装jdk</p>
+<h3 id="若是已经安装jdk-先卸载"><a href="#若是已经安装jdk-先卸载" class="headerlink" title="若是已经安装jdk 先卸载"></a>若是已经安装jdk 先卸载</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 若是已经安装jdk 先卸载</span></div><div class="line">$ rpm -qa | grep jdk | xargs rpm <span class="_">-e</span></div></pre></td></tr></table></figure>
+<h3 id="安装jdk-1"><a href="#安装jdk-1" class="headerlink" title="安装jdk"></a>安装jdk</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 安装jdk</span></div><div class="line">$  rpm -ivh jdk-8u91-linux-x64.rpm </div><div class="line"><span class="comment"># 测试jdk是否安装成功</span></div><div class="line">$ java -version</div></pre></td></tr></table></figure>
+<p><img src="/images/2017-03-21-jdk-version.jpg" alt=""></p>
+<h3 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 编辑环境变量文件</span></div><div class="line">$ vi /etc/profile</div></pre></td></tr></table></figure>
+<p>添加如下内容，将其中的jdk1.8.0_25替换成对应的jdk文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">JAVA_HOME=/usr/java/jdk1.8.0_25</div><div class="line">JRE_HOME=/usr/java/jdk1.8.0_25/jre</div><div class="line">PATH=<span class="variable">$PATH</span>:<span class="variable">$JAVA_HOME</span>/bin:<span class="variable">$JRE_HOME</span>/bin</div><div class="line">CLASSPATH=.:<span class="variable">$JAVA_HOME</span>/lib/dt.jar:<span class="variable">$JAVA_HOME</span>/lib/tools.jar:<span class="variable">$JRE_HOME</span>/lib</div><div class="line"><span class="built_in">export</span> JAVA_HOME JRE_HOME PATH CLASSPATH</div></pre></td></tr></table></figure>
+<p>刷新环境变量<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">source</span> /etc/profile</div><div class="line">$ <span class="built_in">echo</span> <span class="variable">$JAVA_HOME</span></div></pre></td></tr></table></figure></p>
+<h2 id="安装hadoop"><a href="#安装hadoop" class="headerlink" title="安装hadoop"></a>安装hadoop</h2><p>首先，说明一下，从官网下载的hadoop只有32位的，如果需要64位的hadoop，要自己重新编译hadoop源码，教程网上很多。</p>
+<p>然后，因为考虑到之后的hive，hbase等兼容问题，这里使用的是hadoop-2.7.2版本</p>
+<h3 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><p>第一个：hadoop-env.sh<br>在27行修改<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">export</span> JAVA_HOME=/usr/java/jdk1.8.0_91</div></pre></td></tr></table></figure></p>
+<p>第二个：core-site.xml</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 创建tmp目录</span></div><div class="line">$ mkdir /data/hadoop-2.7.2/tmp</div></pre></td></tr></table></figure>
+<p>修改core-site.xml文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;configuration&gt;</div><div class="line">&lt;!-- 指定HDFS老大（namenode）的通信地址 --&gt;</div><div class="line">&lt;property&gt;</div><div class="line">	&lt;name&gt;fs.defaultFS&lt;/name&gt;</div><div class="line">	&lt;value&gt;hdfs://hadoop:9000&lt;/value&gt;</div><div class="line">&lt;/property&gt;</div><div class="line">&lt;!-- 指定hadoop运行时产生文件的存储路径 tmp需要手动创建 --&gt;</div><div class="line">&lt;property&gt;</div><div class="line">	&lt;name&gt;hadoop.tmp.dir&lt;/name&gt;</div><div class="line">	&lt;value&gt;/data/hadoop-2.7.2/tmp&lt;/value&gt;</div><div class="line">&lt;/property&gt;</div><div class="line">&lt;/configuration&gt;</div></pre></td></tr></table></figure>
+<p>第三个：hdfs-site.xml<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;configuration&gt;</div><div class="line">	&lt;!-- 设置hdfs副本数量 默认为3，这里单机设置为1 --&gt;</div><div class="line">	&lt;property&gt;</div><div class="line">		&lt;name&gt;dfs.replication&lt;/name&gt;</div><div class="line">		&lt;value&gt;1&lt;/value&gt;</div><div class="line">	&lt;/property&gt;</div><div class="line">&lt;/configuration&gt;</div></pre></td></tr></table></figure></p>
+<p>第四个：mapred-site.xml.template<br>需要复制一份重命名为mapred-site.xml</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ cp mapred-site.xml.template mapred-site.xml</div></pre></td></tr></table></figure>
+<p>编辑 mapred-site.xml文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;configuration&gt;</div><div class="line">	&lt;!-- 通知框架MR使用YARN --&gt;</div><div class="line">	&lt;property&gt;</div><div class="line">		&lt;name&gt;mapreduce.framework.name&lt;/name&gt;</div><div class="line">		&lt;value&gt;yarn&lt;/value&gt;</div><div class="line">	&lt;/property&gt;</div><div class="line">&lt;/configuration&gt;</div></pre></td></tr></table></figure>
+<p>第五个：yarn-site.xml</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;configuration&gt;</div><div class="line">	&lt;!--设置nodemanager获取数据的方式所shuffle--&gt;</div><div class="line">	&lt;property&gt;</div><div class="line">		&lt;name&gt;yarn.nodemanager.aux-services&lt;/name&gt;</div><div class="line">		&lt;value&gt;mapreduce_shuffle&lt;/value&gt;</div><div class="line">	&lt;/property&gt;</div><div class="line">	&lt;!--设置yarn的老大resourcemanager的地址--&gt;</div><div class="line">	&lt;property&gt;</div><div class="line">		&lt;name&gt;yarn.resourcemanager.hostname&lt;/name&gt;</div><div class="line">		&lt;value&gt;hadoop&lt;/value&gt;</div><div class="line">	&lt;/property&gt;</div><div class="line">&lt;/configuration&gt;</div></pre></td></tr></table></figure>
+<h3 id="添加环境变量"><a href="#添加环境变量" class="headerlink" title="添加环境变量"></a>添加环境变量</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#在PATH里面添加$HADOOP_HOME/bin:$HADOOP_HOME/sbin</span></div><div class="line">PATH=<span class="variable">$PATH</span>:<span class="variable">$JAVA_HOME</span>/bin:<span class="variable">$JRE_HOME</span>/bin:<span class="variable">$HADOOP_HOME</span>/bin:<span class="variable">$HADOOP_HOME</span>/sbin</div><div class="line"><span class="comment">#添加一行HADOOP_HOME</span></div><div class="line">HADOOP_HOME=/data/hadoop-2.7.2</div></pre></td></tr></table></figure>
+<p><img src="/images/2017-03-22-hadoop_home.jpg" alt=""></p>
+<h3 id="初始化hadoop节点"><a href="#初始化hadoop节点" class="headerlink" title="初始化hadoop节点"></a>初始化hadoop节点</h3><p>首先初始化hadoop namenode节点</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hadoop namenode -format</div></pre></td></tr></table></figure>
+<p>出现 Exiting with status 0 表示安装完成</p>
+<h3 id="启动hadoop"><a href="#启动hadoop" class="headerlink" title="启动hadoop"></a>启动hadoop</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 启动dfs</span></div><div class="line">$ start-dfs.sh</div><div class="line"><span class="comment"># 启动yarn服务</span></div><div class="line">$ start-yarn.sh</div><div class="line"><span class="comment"># 检查服务启动是否完成</span></div><div class="line">$ jps</div></pre></td></tr></table></figure>
+<p>如果出现下面几个进程，表示服务启动正常</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">3073 DataNode</div><div class="line">3409 ResourceManager</div><div class="line">3254 SecondaryNameNode</div><div class="line">2988 NameNode</div><div class="line">3500 NodeManager</div><div class="line">3789 Jps</div></pre></td></tr></table></figure>
+<h3 id="上传文件到hdfs中"><a href="#上传文件到hdfs中" class="headerlink" title="上传文件到hdfs中"></a>上传文件到hdfs中</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 在1.txt中写入123456...</span></div><div class="line"><span class="variable">$vi</span> 1.txt</div><div class="line"><span class="comment"># 上传到hdfs </span></div><div class="line"><span class="comment"># hdfs命令 目录是dfs -put 上传 1.txt 到 / (hdfs根目录下)</span></div><div class="line">$ hdfs dfs -put 1.txt /</div><div class="line"><span class="comment"># 检查是否上传成功</span></div><div class="line">$ hdfs dfs -cat /1.txt</div></pre></td></tr></table></figure>
+<p>出现结果表示hadoop安装成功，上传文件成功。</p>
+<p>至此,hadoop单机安装完成，</p>
+<p>注意事项:<br>1.hadoop启动后需要关闭之后再关机，否则容易出问题</p>
+<h2 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h2><h3 id="secureCRT-中文乱码异常"><a href="#secureCRT-中文乱码异常" class="headerlink" title="secureCRT 中文乱码异常"></a><a name="exception-1">secureCRT 中文乱码异常</a></h3><p>异常情况如下图，初次链接ssh会出现中文乱码，<br>原因是因为当前session的默认字符集不支持中文</p>
+<p><img src="/images/2017-03-21-secureCRT-chinese.jpg" alt=""></p>
+<p>修改方法如下:<br>options -&gt; session options -&gt; appearence -&gt; Character encoding -&gt; utf-8</p>
+<p><img src="/images/2017-03-21-secureCRT-chinese-setting.jpg" alt=""></p>
+<p>修改之后，就能识别中文了</p>
+<p><img src="/images/2017-03-21-secureCRT-chinese-setting-2.jpg" alt=""></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/hadoop/" rel="tag"># hadoop</a>
+          
+            <a href="/tags/大数据/" rel="tag"># 大数据</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/14/2017-03-14-records-my-life/" rel="next" title="记录">
+                <i class="fa fa-chevron-left"></i> 记录
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/21/2017-03-21-how-to-earn-1-million/" rel="prev" title="怎么赚100万">
+                怎么赚100万 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/03/20/2017-03-20-install-hadoop-on-centos/"
+           data-title="centOS 7 安装hadoop单机" data-url="http://crystal564.github.io/2017/03/20/2017-03-20-install-hadoop-on-centos/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="crystal564" />
+          <p class="site-author-name" itemprop="name">crystal564</p>
+           
+              <p class="site-description motion-element" itemprop="description">记录生活点滴</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#修改ip地址"><span class="nav-number">1.</span> <span class="nav-text">修改ip地址</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#获取当前使用的ip地址和网卡"><span class="nav-number">1.1.</span> <span class="nav-text">获取当前使用的ip地址和网卡</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改ip地址为静态"><span class="nav-number">1.2.</span> <span class="nav-text">修改ip地址为静态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重启网卡设备"><span class="nav-number">1.3.</span> <span class="nav-text">重启网卡设备</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改主机名"><span class="nav-number">2.</span> <span class="nav-text">修改主机名</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#查看hostname"><span class="nav-number">2.1.</span> <span class="nav-text">查看hostname</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置hostname"><span class="nav-number">2.2.</span> <span class="nav-text">设置hostname</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DNS映射"><span class="nav-number">2.3.</span> <span class="nav-text">DNS映射</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关闭防火墙"><span class="nav-number">3.</span> <span class="nav-text">关闭防火墙</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置ssh免密码登录"><span class="nav-number">4.</span> <span class="nav-text">设置ssh免密码登录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#检查ssh状态"><span class="nav-number">4.1.</span> <span class="nav-text">检查ssh状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置ssh免密码登录-1"><span class="nav-number">4.2.</span> <span class="nav-text">设置ssh免密码登录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试访问"><span class="nav-number">4.3.</span> <span class="nav-text">测试访问</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通过secureCRT访问"><span class="nav-number">4.4.</span> <span class="nav-text">通过secureCRT访问</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装jdk"><span class="nav-number">5.</span> <span class="nav-text">安装jdk</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装rz-sz命令"><span class="nav-number">5.1.</span> <span class="nav-text">安装rz/sz命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#上传jdk"><span class="nav-number">5.2.</span> <span class="nav-text">上传jdk</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#检查jdk是否已经安装"><span class="nav-number">5.3.</span> <span class="nav-text">检查jdk是否已经安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#若是已经安装jdk-先卸载"><span class="nav-number">5.4.</span> <span class="nav-text">若是已经安装jdk 先卸载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装jdk-1"><span class="nav-number">5.5.</span> <span class="nav-text">安装jdk</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置环境变量"><span class="nav-number">5.6.</span> <span class="nav-text">配置环境变量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装hadoop"><span class="nav-number">6.</span> <span class="nav-text">安装hadoop</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#修改配置文件"><span class="nav-number">6.1.</span> <span class="nav-text">修改配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加环境变量"><span class="nav-number">6.2.</span> <span class="nav-text">添加环境变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化hadoop节点"><span class="nav-number">6.3.</span> <span class="nav-text">初始化hadoop节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动hadoop"><span class="nav-number">6.4.</span> <span class="nav-text">启动hadoop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#上传文件到hdfs中"><span class="nav-number">6.5.</span> <span class="nav-text">上传文件到hdfs中</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异常处理"><span class="nav-number">7.</span> <span class="nav-text">异常处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#secureCRT-中文乱码异常"><span class="nav-number">7.1.</span> <span class="nav-text">secureCRT 中文乱码异常</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">crystal564</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"crystal564"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("4kCEAwaczLto7YeJJkO6YSv8-gzGzoHsz", "lf4I3poOdeuRfChe3OjjeUqv");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+
+  
+
+</body>
+</html>
